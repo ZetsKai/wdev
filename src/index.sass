@@ -1,0 +1,53 @@
+@use "sass/top"
+@use "sass/tags"
+@use "sass/main"
+@use "sass/list"
+@use "sass/editor"
+
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+html, body
+	height: 100%
+
+body
+	overflow: hidden
+	display: grid
+	grid-template-columns: 4vw 8vw auto 14vw
+	grid-auto-rows: 4vh auto
+	grid-template-areas: "top top top top" "tags list main editor"
+
+button
+	border: 1px solid black
+	color: white
+
+#selector
+	// display: none
+	position: absolute
+	font-size: 100px
+	font-weight: bolder
+	color: white
+	z-index: 10
+	right: 6%
+	bottom: 2%
+	background-color: red
+
+.blue, .tag-name
+	text-align: center
+	color: white
+
+.blue
+	background-color: blue
+
+.red-border
+	border: 1px solid red
+
+.bar
+	display: flex
+	background: black
+	z-index: 10
+
+.sidebar
+	flex-direction: column
