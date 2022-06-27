@@ -1,17 +1,18 @@
-$(function () {
 class Edit {
     tag = $(".sidebar--edit");
     changeSelectedTag = (property, value) => $(".selected").css(property, value);
     updateView = () => {
         $(".tag-name").html($(".selected").children(".preview").html());
-        $(".colors__selected").css("background-color", "red");
+        $(".colors__selected").css("background-color", $("#page-view > .selected").css("background-color"));
     };
 }
 const EditingSidebar = new Edit();
 $(".colors__input").on("change", function (e) {
     e.stopPropagation();
     EditingSidebar.changeSelectedTag("background-color", $(this).val());
+    EditingSidebar.updateView();
 });
+
 class Tag {
     tag;
     name;
@@ -26,6 +27,7 @@ class Tag {
         this.tag.addClass("selected");
     }
 }
+
 class ListTag extends Tag {
     PageTagClass;
     constructor(tagName, PageTagClass) {
@@ -42,6 +44,7 @@ class ListTag extends Tag {
         this.PageTagClass.select();
     };
 }
+
 class PageTag extends Tag {
     constructor(tagType) {
         super(tagType, "tag-box");
@@ -53,6 +56,8 @@ class PageTag extends Tag {
         this.tag.children(".preview").html(this.name);
     };
 }
+
+$(function () {
     function addNewTag(tagType) {
         const newPageTag = new PageTag(tagType);
         $("#page-view").append(newPageTag.tag);
