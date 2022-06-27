@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wdev</title>
+    <link type="text/css" rel="stylesheet" href="index.bundle.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/335e64dc15.js" crossorigin="anonymous"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script defer type="module" src="index.bundle.js"></script>
+  </head>
+  <body>
+    <nav class="bar red-border top">
+      <button class="top__button">File</button>
+      <button class="top__button">Edit</button>
+      <button class="top__button">Help</button>
+      <button class="top__button">Remove tag</button>
+    </nav>
+    <div class="bar red-border sidebar sidebar--tools">
+      <button class="blue sidebar--tools__button">DIV</button>
+      <button class="blue sidebar--tools__button">P</button>
+      <button class="blue sidebar--tools__button">HEADER</button>
+      <button class="blue sidebar--tools__button">MAIN</button>
+      <button class="blue sidebar--tools__button">ARTICLE</button>
+      <button class="blue sidebar--tools__button">SECTION</button>
+      <button class="blue sidebar--tools__button">FOOTER</button>
+      <button class="blue sidebar--tools__button">BUTTON</button>
+    </div>
+    <div class="bar red-border sidebar sidebar--list">
+      <div class="blue">tags</div>
+    </div>
+    <div id="page-view"></div>
+    <div class="bar red-border sidebar sidebar--edit" test="penis">
+      <div class="tag-name">NONE</div>
+      <div class="colors red-border">
+        <div class="colors__placeholder">
+          <div class="colors__selected"></div>
+        </div>
+        <div class="colors__input">
+          <input class="colors__input" type="color">
+        </div>
+      </div>
+    </div>
+    <div class="red-border" id="selector">NONE</div>
+  </body>
+</html>
