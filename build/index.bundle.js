@@ -1,3 +1,4 @@
+$(function () {
 class Edit {
     tag = $(".sidebar--edit");
     changeSelectedTag = (property, value) => $(".selected").css(property, value);
@@ -57,7 +58,6 @@ class PageTag extends Tag {
     };
 }
 
-$(function () {
     function addNewTag(tagType) {
         const newPageTag = new PageTag(tagType);
         $("#page-view").append(newPageTag.tag);
