@@ -1,0 +1,38 @@
+doctype html
+html(lang="en", data-theme="light")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title wdev
+		link(type="text/css", rel="stylesheet", href="index.bundle.css")
+		link(rel="shortcut icon", href="favicon.ico", type="image/x-icon")
+		script(src="https://kit.fontawesome.com/335e64dc15.js" crossorigin="anonymous")
+		script(defer src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous")
+		script(defer type="module" src="index.bundle.js")
+
+	body
+		nav.bar.red-border.top
+			each val in ["File", "Edit", "Help", "Remove tag"]
+				button.top__button=val
+
+		.bar.red-border.sidebar.sidebar--tools
+			each val in ["DIV", "P", "HEADER", "MAIN", "ARTICLE", "SECTION", "FOOTER", "BUTTON" ]
+				button.blue.sidebar--tools__button=val
+
+		.bar.red-border.sidebar.sidebar--list
+			.blue tags
+
+		#page-view
+
+		.bar.red-border.sidebar.sidebar--edit(test="penis")
+			.tag-name NONE
+
+			.colors.red-border
+				.colors__placeholder
+					.colors__selected
+
+				.colors__input
+					input.colors__input(type="color")
+
+
+		#selector.red-border NONE
