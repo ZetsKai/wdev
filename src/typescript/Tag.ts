@@ -1,16 +1,42 @@
+/**
+ * This is a Tag class.
+ * 
+ * When invoked, it creates two JQuery elements.
+ * @class Tag
+ * @module Tag
+ */
 export class Tag {
-	tag: JQuery<HTMLElement>;
-	name!: string;
+	public tag: JQuery<HTMLElement>;
+	public listTag: JQuery<HTMLElement>;
 
-	constructor(tagType: string, classo: string) {
-		this.tag = $(`<${tagType} class="${classo}"></${tagType}>`);
+	/** @param {string} tagType */
+	constructor(tagType: string) {
+		const nodeName = tagType.toLowerCase();
+		this.tag = $(`<${nodeName} class="tag-box"><div class="preview"></div></${nodeName}>`);
+		this.listTag = $(`<div class="blue sidebar--list__tag"></div>`);
 	}
 
-	setName(newName: string) {
-		this.name = newName
-	}
-	select() {
-		this.tag.parent().children().removeClass("selected");
+	/**
+	 * @param {JQuery.Event} event
+	 * @returns {Tag}
+	 */
+	public select = (event: JQuery.Event): Tag => {
+		event.stopPropagation();
+
 		this.tag.addClass("selected");
+		this.listTag.addClass("selected");
+		return this;
+	}
+
+	/** @param {Tag} newChild */
+	public addChild = (newChild: Tag) => this.tag.append(newChild.tag);
+
+	/** @param {string} newName */
+	public setName = (newName: string): void => {
+		this.tag.children(".preview").html(newName);
+		this.listTag.html(newName);
 	}
 }
+
+/** @module removeTag */
+export const removeTag = () => $(".selected").remove();
