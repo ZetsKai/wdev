@@ -1,20 +1,46 @@
-// import { ListTag } from "./ListTag";
-// import { PageTag } from "./PageTag";
+import { Tag } from "./Tag";
 
-class Edit {
-	tag: JQuery<HTMLElement> = $(".sidebar--edit");
-
-	changeSelectedTag = (property: string, value: any) => $(".selected").css(property, value);
-	updateView = () => {
-		$(".tag-name").html($(".selected").children(".preview").html());
-		$(".colors__selected").css("background-color", $("#page-view > .selected").css("background-color"));
-	}
+interface EditInterface {
+	selectedClass: Tag | undefined;
+	changeTag(property: string, value: any): void;
+	updateView(classo: Tag): void;
 }
 
-export const EditingSidebar: Edit = new Edit();
+class EditingSidebar implements EditInterface {
+	selectedClass: Tag | undefined;
+
+	changeTag = (property: string, value: any): void => {
+		if (this.selectedClass == undefined) return;
+		this.selectedClass.tag.css(property, value);
+	}
+	updateView = (): void => {
+		let name: string;
+		let background: string;
+
+		if (this.selectedClass !== undefined) {
+			name = this.selectedClass.tag.children(".preview").html();
+			background = $("#page-view .selected").css("background-color");
+		}
+		else {
+			name = "None";
+			background = "transparent";
+		}
+
+		$(".tag-name").val(name);
+		$(".colors__selected").css("background-color", background);
+	}
+	setClass = (classo: Tag | undefined = undefined) => this.selectedClass = classo;
+}
+
+export const Edit: EditingSidebar = new EditingSidebar();
 
 $(".colors__input").on("change", function(e) {
 	e.stopPropagation();
-	EditingSidebar.changeSelectedTag("background-color", $(this).val());
-	EditingSidebar.updateView();
+	Edit.changeTag("background-color", $(this).val());
+	Edit.updateView();
+});
+$(".tag-name").on("keydown", function(e: JQuery.Event) {
+	if (e.key !== "Enter") return
+	const newName: any = $(this).val();
+	Edit.selectedClass?.setName(newName);
 });
