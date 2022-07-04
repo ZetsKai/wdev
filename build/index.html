@@ -13,7 +13,6 @@
   <body>
     <nav class="bar red-border top">
       <button class="top__button">File</button>
-      <button class="top__button">Edit</button>
       <button class="top__button">Help</button>
       <button class="top__button">Remove tag</button>
     </nav>
@@ -32,16 +31,45 @@
     </div>
     <div id="page-view"></div>
     <div class="bar red-border sidebar sidebar--edit" test="penis">
-      <div class="tag-name">NONE</div>
-      <div class="colors red-border">
-        <div class="colors__placeholder">
-          <div class="colors__selected"></div>
+      <input class="tag-name" value="None">
+      <details id="layout">
+        <summary>layout</summary>
+        <div>display</div>
+        <label for="grid">grid:</label>
+        <input class="css-property" type="checkbox" name="grid"><br>
+        <label for="flex">flex:</label>
+        <input class="css-property" type="checkbox" name="flex"><br>
+        <label for="block">block:</label>
+        <input class="css-property" type="checkbox" name="block"><br>
+        <label for="inline">inline:</label>
+        <input class="css-property" type="checkbox" name="inline"><br>
+        <label for="inline">inline:</label>
+        <input class="css-property" type="checkbox" name="inline"><br><br>
+        <div>position<br>
+          <label for="grid-area">grid-area:</label>
+          <input type="text" name="grid-area">
         </div>
-        <div class="colors__input">
-          <input class="colors__input" type="color">
-        </div>
-      </div>
+        <label for="relative">relative:</label>
+        <input class="css-property" type="checkbox" name="relative"><br>
+        <label for="absolute">absolute:</label>
+        <input class="css-property" type="checkbox" name="absolute"><br>
+        <label for="static">static:</label>
+        <input class="css-property" type="checkbox" name="static"><br><br>
+      </details>
+      <details id="colors">
+        <summary>colors</summary>
+        <div>background-color:</div>
+        <input class="css-property" id="background-color" type="text" name="background-color">
+        <div>text-color:</div>
+        <input class="css-property" id="text-color" type="text" name="text-color">
+        <div>border-color:</div>
+        <input class="css-property" id="border-color" type="text" name="border-color">
+      </details>
+      <details id="more">
+        <summary>more~</summary>
+        <input class="css-property">
+      </details>
     </div>
-    <div class="red-border" id="selector">NONE</div>
+    <div id="selector">These birds are pissing me off... I'm The Original... Starwalker</div>
   </body>
 </html>
