@@ -1,23 +1,21 @@
 import "./index.sass";
-import { EditingSidebar } from "./typescript/Edit"
-import { ListTag } from "./typescript/ListTag";
-import { PageTag } from "./typescript/PageTag";
+import { Tag, removeTag } from "./typescript/Tag";
+import { Edit } from "./typescript/Edit";
+import { pp } from "./typescript/CSSCompile";
+
+let selected: Tag | undefined;
+
+function deselect(e: JQuery.Event): void {
+	e.stopPropagation();
+	if (selected == undefined) return;
+
+	$(".selected").removeClass("selected");
+	selected = undefined;
+	Edit.setClass();
+	Edit.updateView();
+}
 
 $(function() {
-
-	function addNewTag(tagType: string) {
-		const newPageTag: PageTag = new PageTag(tagType);
-		$("#page-view").append(newPageTag.tag);
-		newPageTag.newName();
-
-		const newListTag: ListTag = new ListTag("div", newPageTag);
-		newListTag.tag.on("click", () => {
-			newListTag.handleSelect();
-			EditingSidebar.updateView();
-		})
-		$(".sidebar--list").append(newListTag.tag);
-
-	}
 
 	/**
 	** A JQuery each loop that loops through "children"
@@ -31,18 +29,46 @@ $(function() {
 	* will be named to: "DIV#2";
  	*/
 	// ! - WARNING: NOT IN USE ATM!!!!
-	const setElementName = (tag: JQuery<HTMLElement>, newName: string) => tag.children(".preview").html(newName);
-	function updateTags(): void {
-		const children: JQuery<HTMLElement> = $("#page-view").children();
+	// function updateTags(): void {
+	// 	const children: JQuery<HTMLElement> = $("#page-view").children();
 	
-		children.each(function() {
-			const elementName = this.nodeName;
-			const index = $(`#page-view ${elementName}`).index($(this)) + 1;
-			setElementName($(this),`${elementName}#${index}`);
-		})
+	// 	children.each(function() {
+	// 		const elementName = this.nodeName;
+	// 		const index = $(`#page-view ${elementName}`).index($(this)) + 1;
+	// 		$(this).children(".preview").html(`${elementName}#${index}`)
+	// 	})
+	// }
+
+	function addNewtag(tagType: string): void {
+		const newTag: Tag = new Tag(tagType);
+		const nodeName: string = tagType.toLowerCase();
+
+		if (selected !== undefined) {
+			selected.addChild(newTag)
+			newTag.setName(`${nodeName}#${selected.tag.children(`${nodeName}.tag-box`).length}`);
+		}
+		else {
+			$("#page-view").append(newTag.tag);
+			newTag.setName(`${nodeName}#${$("#page-view").children(nodeName).length}`);
+		}
+
+		function handleSelect(e: JQuery.Event): void {
+			deselect(e);
+			selected = newTag.select(e);
+			Edit.setClass(selected);
+			Edit.updateView();
+		}
+
+		$(".sidebar--list").append(newTag.listTag);
+		newTag.tag.children(".preview").on("click",handleSelect);
+		newTag.listTag.on("click", handleSelect);
 	}
 
-	$(".sidebar--tools__button").on("click", (e) => addNewTag(e.target.innerHTML));
-	$($(".top__button")[3]).on("click", updateTags);
-	$($(".top__button")[2]).on("click", EditingSidebar.updateView);
-})
+	$(".sidebar--list").on("click", deselect);
+	$(".sidebar--tools__button").on("click", (e) => addNewtag(e.target.innerHTML));
+	$($(".top__button")[2]).on("click", () => $(".css-property"))
+	// $($(".top__button")[2]).on("click", (e) => );
+		// removeTag();
+		// deselect(e);
+	// });
+});
