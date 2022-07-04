@@ -12,7 +12,7 @@ html(lang="en", data-theme="light")
 
 	body
 		nav.bar.red-border.top
-			each val in ["File", "Edit", "Help", "Remove tag"]
+			each val in ["File", "Help", "Remove tag"]
 				button.top__button=val
 
 		.bar.red-border.sidebar.sidebar--tools
@@ -25,14 +25,34 @@ html(lang="en", data-theme="light")
 		#page-view
 
 		.bar.red-border.sidebar.sidebar--edit(test="penis")
-			.tag-name NONE
+			input.tag-name(value="None")
 
-			.colors.red-border
-				.colors__placeholder
-					.colors__selected
+			details#layout
+				summary layout
+				div display
+				each val in ["grid", "flex", "block", "inline", "inline"]
+					label(for=val)=val+':'
+					input(type="checkbox", name=val).css-property
+					br
+				br
+				div position
+					br
+					label(for="grid-area") grid-area:
+					input(type="text" name="grid-area")
+				each val in ["relative", "absolute", "static"]
+					label(for=val)=val+':'
+					input(type="checkbox", name=val).css-property
+					br
+				br
+				
+			details#colors
+				summary colors
+				each val in ["background-color", "text-color", "border-color"]
+					div=val+':'
+					input(id=val, type="text", name=val).css-property
+			details#more
+				summary more~
+				input.css-property
 
-				.colors__input
-					input.colors__input(type="color")
 
-
-		#selector.red-border NONE
+		#selector These birds are pissing me off... I'm The Original... Starwalker
