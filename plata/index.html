@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Web Maker</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<script src="https://kit.fontawesome.com/335e64dc15.js" crossorigin="anonymous"></script>
+		<script defer type="module" src="/src/index.ts"></script>
+	</head>
+	<body>
+		<!-- <div id="info" class="show w-full bg-glass-dark glass text-white text-center overflow-hidden">
+			<p>Move your cursor to the left corner of your screen to start.</p>
+		</div> -->
+		<div id="dock-hitbox" class="absolute -translate-x-14 h-full transition-transform z-20 hover:translate-x-0 box-content pr-[1px]">
+			<nav id="dock" class="flex flex-col w-14 bg-glass-dark glass text-white h-full">
+				<button id="tags" class="grow mb-0 transition-colors hover:bg-orange-500 hover:text-black" type="button"><i class="fa-solid fa-code"></i></button>
+				<button id="edit" class="dock__btn relative overflow-hidden grow mb-0 hover:text-black" type="button">
+					<div class="drop absolute h-0 w-0 bg-cyan-400 rounded-full -z-10 top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4"></div>
+					<!-- <i class="fa-solid fa-pen fa-lg"></i> -->
+					<i class="fa-solid fa-paintbrush fa-lg"></i>
+				</button>
+				<button id="code" class="dock__btn relative overflow-hidden grow mb-0 hover:text-black" type="button">
+					<div class="matrix absolute top-0 h-0 w-full bg-yellow-300 -z-10"></div>
+					<i class="fa-brands fa-js fa-xl"></i>
+				</button>
+				<button id="preview" class="h-14 transition-colors border-t-2 border-slate-500 border-solid hover:text-lime-400" type="button"><i class="fa-solid fa-eye fa-lg"></i></button>
+				<button id="settings" class="h-14 transition-colors hover:text-purple-400" type="button"><i class="fa-solid fa-gear fa-lg"></i></button>
+			</nav>
+		</div>
+		<div id="menu--tags" class="absolute w-44 h-full bg-glass-dark glass z-10 text-white overflow-x-scroll hidden p-2">
+			<div class=" bg-orange-600">
+				<button id="add" type="button">ADD</button>
+			</div>
+			<details id="body-tag" class="pl-2">
+				<summary id="body-name" class="selected--list">body</summary>
+				<!-- <details class="border-l-2 border-slate-300 border-solid pl-4"></details> -->
+			</details>
+		</div>
+		<main id="view" class="h-full overflow-y-scroll"><div id="body" class="selected--view relative"></div></main>
+		<div id="page--add" class="page absolute flex flex-nowrap w-96 h-full top-0 right-0  bg-glass-dark glass text-white hidde">
+			<div id="categories" class="bg-black bg-opacity-40 basis-14">
+				<button type="button" class="w-full h-14 bg-black">
+					<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline">
+						<rect width="30" height="6.2069" fill="white"/>
+						<rect y="23.7931" width="30" height="6.2069" fill="white"/>
+						<rect y="10.3448" width="18.6207" height="9.31034" fill="white"/>
+						<rect x="22.7586" y="10.3448" width="7.24138" height="9.31034" fill="white"/>
+					</svg>
+				</button>
+				<button type="button" class="w-full h-14"><i class="text-4xl font-black font-serif">T.</i></button>
+				<button type="button" class="w-full h-14">O</button>
+				<button type="button" class="w-full h-14">O</button>
+			</div>
+			<div class="temporal_container w-80 grow flex flex-col">
+				<div id="tag-search" class="basis-12 flex p-3">
+					<input type="search" name="" id="" class="basis-full grow mr-3 bg-black" placeholder="Search a tag">
+					<button type="button" class="h-12 w-12 bg-blue-400 shrink-0 rounded-full">S</button>
+				</div>
+				<div id="layout" class="grid grid-cols-2 gap-3 p-3 basis-full grow overflow-y-scroll auto-rows-max hidden">
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="white"/>
+								<rect y="25" width="76" height="46" fill="white"/>
+								<rect x="84" y="25" width="27" height="46" fill="white"/>
+							</svg>							
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>div</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="white"/>
+								<rect y="25" width="76" height="46" fill="#555555"/>
+								<rect x="84" y="25" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>header</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="white"/>
+								<rect y="25" width="76" height="46" fill="#555555"/>
+								<rect x="84" y="25" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>nav</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="#555555"/>
+								<rect y="25" width="76" height="46" fill="white"/>
+								<rect x="84" y="25" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>main</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="#555555"/>
+								<rect y="25" width="76" height="46" fill="white"/>
+								<rect x="84" y="25" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>section</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="#555555"/>
+								<rect y="25" width="76" height="46" fill="white"/>
+								<rect x="84" y="25" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>article</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="111" height="17" fill="#555555"/>
+								<rect y="25" width="76" height="46" fill="#555555"/>
+								<rect x="84" y="25" width="27" height="46" fill="white"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>aside</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3">
+							<svg width="" height="" viewBox="0 0 111 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect y="54" width="111" height="17" fill="white"/>
+								<rect width="76" height="46" fill="#555555"/>
+								<rect x="84" width="27" height="46" fill="#555555"/>
+							</svg>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>footer</span>&gt</h3></div>
+					</div>
+				</div>
+				<div id="text" class="grid grid-cols-2 gap-3 p-3 basis-full grow overflow-y-scroll auto-rows-max">
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3 flex justify-center items-center">
+							<h3 class="text-5xl font-serif">span</h3>
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>span</span>&gt</h3></div>
+					</div>
+					<div class="tag-card h-40 bg-black bg-opacity-40 flex flex-col hover:border-4 rounded-lg border-orange-400">
+						<div class="eggsample grow p-3 flex justify-center items-center">
+							<h3 class="text-6xl font-serif">a</h3>					
+						</div>
+						<div class="tag-name bg-black h-10 text-center"><h3 class="text-2xl">&lt<span>a</span>&gt</h3></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="page--edit" class="page absolute w-52 h-full top-0 right-0 bg-glass-dark glass text-white hidden">
+			<!-- <div>innerHTML</div> -->
+			<!-- <input class="text-black" id="innerHTML" type="text"> -->
+			<div>position</div>
+			<input class="text-black" id="position" type="text">
+			<div>display</div>
+			<input class="text-black" id="display" type="text">
+			<div>visibility</div>
+			<input class="text-black" id="visibility" type="text">
+			<div>justify-content</div>
+			<input class="text-black" id="justifyContent" type="text">
+			<div>width</div>
+			<input class="text-black" id="width" type="text">
+			<div>height</div>
+			<input class="text-black" id="height" type="text">
+			<div>background-color</div>
+			<input class="text-black" id="backgroundColor" type="text">
+			<div>margin</div>
+			<input class="text-black" id="margin" type="text">
+			<div>padding</div>
+			<input class="text-black" id="padding" type="text">
+		</div>
+	</body>
+</html>
